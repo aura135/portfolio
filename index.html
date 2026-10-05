@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<!--
+================================================================================
+  PORTFOLIO EDITING GUIDE   (edit THIS file only: index.html)
+================================================================================
+  You never need to touch style.css or script.js. Everything you write here is
+  read by script.js and rendered automatically.
+
+  EMPTY = HIDDEN.
+  If you leave a field empty (or delete it), it will NOT show to visitors:
+  no blank boxes, no broken links, no empty headings.
+    * text fields .......... empty text hides that element
+    * links (a tags) ....... empty or missing href hides the whole link.
+                             This is how the Resume button stays hidden
+                             until you upload a resume file.
+    * list items (li) ...... empty items are hidden automatically
+    * images ............... a missing or broken pic shows a "Demo Pic"
+                             placeholder instead of a broken image
+
+  Every content value below starts with the word "Demo" so you can find and
+  replace it. Use your editor's Find & Replace for repeated values such as
+  "Demo Your Name".
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  SECTION MAP  (search for these markers)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    [01] NAVBAR    - brand name, nav links, theme toggle
+    [02] HERO      - name, "CSC" label, tagline + chips, typed roles,
+                     profile pic, resume link, social links
+    [03] ABOUT     - about paragraph, goals list, stats (animated counters)
+    [04] SKILLS    - languages, frameworks, tools (data-level = bar percent)
+    [05] PROJECTS  - tab "My Projects" and tab "Team Projects"
+    [06] JOURNEY   - education timeline + achievements timeline
+    [07] CONTACT   - email, phone, location + contact form
+    [08] FOOTER    - name + year
+    [09] EXTRAS    - toast messages, easter egg message, lightbox
+  (The preloader above the NAVBAR marker copies your hero name automatically.)
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HOW TO EDIT A TEXT FIELD
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <p data-field="about">Demo About Me: write your paragraph here.</p>
+    Just change the text between the tags. Leave it empty (or delete the whole
+    line) and the element disappears from the page for visitors.
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HOW TO EDIT OR REMOVE A LINK
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <a href="https://github.com/yourname" data-field="github">Demo GitHub Link</a>
+    * Replace href="https://github.com/yourname" with your real URL.
+    * Placeholders like href="#demo-github" are safe: clicking them shows a
+      friendly "demo link" note instead of a broken page.
+    * To hide a link, delete the href value: href=""   (or delete the line)
+
+  RESUME BUTTON (hero): its href is intentionally EMPTY, so the button is
+  hidden for visitors. After you upload your resume, set for example:
+    href="assets/resume.pdf"
+  and the button appears automatically.
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HOW TO ADD OR REMOVE A PROJECT (copy / delete a whole card)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Paste this inside the panel you want (panel "panel-mine" = My Projects,
+  panel "panel-team" = Team Projects). Delete the whole <article> to remove it.
+
+    <article class="p-card" data-reveal="zoom-in" data-delay="1" data-tilt>
+      <div class="p-card__tilt">
+        <div class="p-card__flip">
+          <div class="p-card__face p-card__front">
+            <div class="p-card__media">
+              <img src="assets/projects/aircontrol.svg" alt="Demo Project Name preview" data-field="pic">
+              <span class="ph" data-ph>Demo Pic</span>
+            </div>
+            <div class="p-card__body">
+              <h3 class="p-card__title" data-field="name">Demo Project Name</h3>
+            </div>
+            <button class="p-card__btn" type="button" data-flip aria-expanded="false">Details</button>
+          </div>
+          <div class="p-card__face p-card__back">
+            <p class="p-card__desc" data-field="desc">Demo Description: one short paragraph.</p>
+            <ul class="tags" data-list>
+              <li>Demo Tech 1</li><li>Demo Tech 2</li><li>Demo Tech 3</li>
+            </ul>
+            <div class="p-card__links">
+              <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic"><use href="#i-doc"></use></svg> Demo Documentation</a>
+              <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+              <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic"><use href="#i-external"></use></svg> Demo Live Link</a>
+            </div>
+            <button class="p-card__btn p-card__btn-back" type="button" data-flip>Back</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  TEAM PROJECT cards use the same markup, plus this block inside the back face
+  (before p-card__links):
+
+    <div class="p-card__meta">
+      <div data-field-wrap>
+        <dt><svg class="ic"><use href="#i-users"></use></svg> Team</dt>
+        <dd data-field="team">Demo Team Members: Demo Name 1, Demo Name 2</dd>
+      </div>
+      <div data-field-wrap>
+        <dt><svg class="ic"><use href="#i-briefcase"></use></svg> My Role</dt>
+        <dd data-field="role">Demo My Role</dd>
+      </div>
+    </div>
+
+  To change a card picture: put your file in assets/ and edit the img src.
+  To use no picture at all: delete the img line and keep
+  <span class="ph" data-ph>Demo Pic</span> - a styled placeholder is shown.
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HOW TO ADD OR REMOVE A SKILL
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Copy or delete one <li> inside a group. data-level controls the bar percent.
+
+    <li class="skill" data-level="85">
+      <div class="skill__top">
+        <span class="skill__name" data-field="skill">Demo Language 7</span>
+        <span class="skill__pct">85%</span>
+      </div>
+      <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+    </li>
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HOW TO ADD OR REMOVE A STAT (About), GOAL, TIMELINE ITEM, CONTACT FIELD
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  * Stat: copy a <div class="stat"> block. The number text may include a
+    suffix, e.g. <span class="stat__num" data-count>120+</span> animates
+    from 0 to 120 and keeps the "+". Empty number or empty label hides it.
+  * Goal: copy an <li data-field="goal"> inside the goals list.
+  * Education / Achievement: copy a <article class="tl-item"> inside the
+    timeline (put Education items after the "Education" group heading and
+    achievement items after the "Achievements / Certifications" heading).
+  * Contact info: edit the value inside each <div class="info-card">. Empty
+    value = that info card is hidden.
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  FORM  (section [07])
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  The form is a demo: it validates and shows a success animation, but sends no
+  email. Each input has placeholder="Demo ..." text and data-msg-required /
+  data-msg-email texts you can rewrite. Clear an input's placeholder text to
+  hide nothing (placeholders are hints, not content).
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  TIP: keyboard and accessibility are already handled. Links, tabs, cards,
+  lightbox and the menu all work with Tab / Enter / Escape.
+================================================================================
+-->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Your Name — Demo Portfolio</title>
+  <meta name="description" content="Demo description: personal portfolio of Demo Your Name.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    /* pre-paint theme so there is no flash, plus a preloader failsafe */
+    try {
+      var t = localStorage.getItem('demo-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      var p = document.getElementById('preloader');
+      if (p) p.classList.add('is-done');
+      if (document.body) document.body.classList.remove('is-loading');
+    }, 5000);
+  </script>
+  <noscript><style>
+    #preloader { display: none !important; }
+    body { overflow: auto !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+    .role-list { position: static !important; clip: auto !important; width: auto !important; height: auto !important; }
+    .typed, .caret { display: none !important; }
+  </style></noscript>
+</head>
+<body class="is-loading">
+
+  <!-- ===== icon sprite (decorative) ===== -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+      <path d="M9 18c-4.51 2-5-2-7-2"/>
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c3 2.5 9 2.5 12 0v-4.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10.5 13.9 12.4 12 18l-1.9-5.6L4.5 10.5l5.6-1.9L12 3z"/><path d="M19 3v3M17.5 4.5h3"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  </svg>
+
+  <!-- ===== preloader ===== -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <p class="preloader__name" id="preName"></p>
+      <span class="preloader__bar"><span></span></span>
+    </div>
+  </div>
+
+  <!-- ===== custom cursor / progress / skip link ===== -->
+  <span class="cursor-dot" aria-hidden="true"></span>
+  <span class="cursor-ring" aria-hidden="true"></span>
+  <div class="progress" id="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================================================================
+       [01] NAVBAR - edit the brand text and the link labels below
+       ================================================================ -->
+  <header class="topbar" id="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#home">
+        <span class="brand__mark" aria-hidden="true">DY</span>
+        <span class="brand__text" data-field="brand">Demo Your Name</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <ul class="nav__list" id="navList">
+          <li><a class="nav__link" href="#home" data-field="nav">Home</a></li>
+          <li><a class="nav__link" href="#about" data-field="nav">About</a></li>
+          <li><a class="nav__link" href="#skills" data-field="nav">Skills</a></li>
+          <li><a class="nav__link" href="#projects" data-field="nav">Projects</a></li>
+          <li><a class="nav__link" href="#journey" data-field="nav">Journey</a></li>
+          <li><a class="nav__link" href="#contact" data-field="nav">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <svg class="ic ic--sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+          <svg class="ic ic--moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+        </button>
+        <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navList" aria-label="Open menu">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================================================================
+         [02] HERO - name, label, tagline, chips, roles, picture,
+         resume link (hidden until you give it an href) and social links
+         ================================================================ -->
+    <section class="hero" id="home" aria-labelledby="heroName">
+      <div class="hero__bg" aria-hidden="true">
+        <canvas id="constellation"></canvas>
+        <span class="shape shape--1"></span>
+        <span class="shape shape--2"></span>
+        <span class="shape shape--3"></span>
+        <span class="shape shape--4"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="hero__eyebrow" data-reveal="fade-up"><span class="hero__dot"></span><span data-field="eyebrow">CSC</span></p>
+          <h1 class="hero__title" id="heroName" data-field="name" data-reveal="fade-up" data-delay="1">Demo Your Name</h1>
+          <p class="hero__tagline" data-reveal="fade-up" data-delay="2">
+            <span data-field="tagline">Turning Ideas Into Apps</span>
+            <span class="chip" data-field="chip">Vibe Coding</span>
+            <span class="chip chip--alt" data-field="chip">Real World Problem Solver</span>
+          </p>
+          <p class="hero__roles" data-reveal="fade-up" data-delay="3">
+            <span class="hero__iam">I am a&nbsp;</span><span class="typed" id="typedRole" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span>
+            <ul class="role-list" id="roleList" data-list>
+              <li>Web Developer</li>
+              <li>CSE Student</li>
+              <li>Demo Vibe Coder</li>
+            </ul>
+          </p>
+          <div class="hero__cta" data-reveal="fade-up" data-delay="4">
+            <a class="btn btn--primary" href="#contact" data-magnetic>
+              Let's Talk <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn--ghost" data-field="resume" href="" download data-magnetic>
+              <svg class="ic" aria-hidden="true"><use href="#i-download"></use></svg> Demo Resume
+            </a>
+          </div>
+          <ul class="hero__socials" data-list data-reveal="fade-up" data-delay="5">
+            <li>
+              <a class="social" href="#demo-github" data-field="social" aria-label="Demo GitHub link" title="Demo GitHub Link">
+                <svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social" href="#demo-linkedin" data-field="social" aria-label="Demo LinkedIn link" title="Demo LinkedIn Link">
+                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social" href="mailto:demo@example.com" data-field="social" aria-label="Demo email link" title="Demo Email Link">
+                <svg class="ic" aria-hidden="true"><use href="#i-mail"></use></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero__media" data-reveal="zoom-in" data-delay="2">
+          <span class="hero__ring" aria-hidden="true"></span>
+          <span class="hero__ring hero__ring--2" aria-hidden="true"></span>
+          <figure class="hero__frame" data-lightbox>
+            <img class="hero__pic" src="assets/demo-avatar.svg" alt="Demo Pic: profile photo of Demo Your Name" data-field="avatar">
+            <span class="ph" data-ph>Demo Pic</span>
+          </figure>
+          <span class="hero__badge" aria-hidden="true"><svg class="ic"><use href="#i-spark"></use></svg> Demo Available</span>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
+        <span>Scroll</span><svg class="ic" aria-hidden="true"><use href="#i-chevron"></use></svg>
+      </a>
+    </section>
+
+    <div class="divider" aria-hidden="true" data-reveal="fade">
+      <svg class="divider__svg" viewBox="0 0 2880 140" preserveAspectRatio="none" focusable="false">
+        <path class="divider__fill" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80 L2880 140 L0 140 Z"/>
+        <path class="divider__line" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80"/>
+      </svg>
+    </div>
+
+    <!-- ================================================================
+         [03] ABOUT - paragraph, goals, stats (numbers animate)
+         ================================================================ -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="container">
+        <header class="section__head" data-reveal="fade-up">
+          <p class="section__kicker" data-field="kicker"><span class="section__num">01</span> About</p>
+          <h2 class="section__title" id="aboutTitle" data-field="title">A few words about me</h2>
+        </header>
+
+        <div class="about__grid">
+          <div class="about__prose" data-reveal="slide-left">
+            <p class="about__lead" data-field="about">Demo About Me: I am a Demo CSE student who loves turning ideas into real, working apps. This is demo text, so replace it with a short paragraph about who you are, what you build, and what you care about. Three or four sentences read best.</p>
+            <div class="goals">
+              <h3 class="goals__title" data-field="goals-title"><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg> Demo Goals</h3>
+              <ul class="goals__list" data-list>
+                <li data-field="goal">Demo Goal 1: ship products that real people use every day.</li>
+                <li data-field="goal">Demo Goal 2: keep learning new technologies every month.</li>
+                <li data-field="goal">Demo Goal 3: solve real world problems with clean code.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="stats" data-reveal="slide-right" data-delay="1">
+            <div class="stat" data-field-wrap>
+              <span class="stat__num" data-count data-field="stat-num">120+</span>
+              <span class="stat__label" data-field="stat-label">Demo Total Projects</span>
+            </div>
+            <div class="stat" data-field-wrap>
+              <span class="stat__num" data-count data-field="stat-num">75+</span>
+              <span class="stat__label" data-field="stat-label">Demo My Projects</span>
+            </div>
+            <div class="stat" data-field-wrap>
+              <span class="stat__num" data-count data-field="stat-num">45+</span>
+              <span class="stat__label" data-field="stat-label">Demo Team Projects</span>
+            </div>
+            <div class="stat" data-field-wrap>
+              <span class="stat__num" data-count data-field="stat-num">20+</span>
+              <span class="stat__label" data-field="stat-label">Demo Technologies</span>
+            </div>
+            <div class="stat" data-field-wrap>
+              <span class="stat__num" data-count data-field="stat-num">3+</span>
+              <span class="stat__label" data-field="stat-label">Demo Years</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider divider--flip" aria-hidden="true" data-reveal="fade">
+      <svg class="divider__svg" viewBox="0 0 2880 140" preserveAspectRatio="none" focusable="false">
+        <path class="divider__fill" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80 L2880 140 L0 140 Z"/>
+        <path class="divider__line" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80"/>
+      </svg>
+    </div>
+
+    <!-- ================================================================
+         [04] SKILLS - change the names and the data-level percentages
+         ================================================================ -->
+    <section class="section section--tint" id="skills" aria-labelledby="skillsTitle">
+      <div class="container">
+        <header class="section__head" data-reveal="fade-up">
+          <p class="section__kicker" data-field="kicker"><span class="section__num">02</span> Skills</p>
+          <h2 class="section__title" id="skillsTitle" data-field="title">Skills I work with</h2>
+          <p class="section__sub" data-field="sub">Demo Subtitle: a quick look at the demo tools of my trade.</p>
+        </header>
+
+        <div class="skills__grid">
+          <div class="skill-card" data-reveal="fade-up" data-delay="1">
+            <h3 class="skill-card__title" data-field="group">Languages</h3>
+            <ul class="skills" data-list>
+              <li class="skill" data-level="92">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 1</span><span class="skill__pct">92%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="88">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 2</span><span class="skill__pct">88%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="85">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 3</span><span class="skill__pct">85%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="80">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 4</span><span class="skill__pct">80%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="75">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 5</span><span class="skill__pct">75%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="70">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Language 6</span><span class="skill__pct">70%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="skill-card" data-reveal="fade-up" data-delay="2">
+            <h3 class="skill-card__title" data-field="group">Frameworks</h3>
+            <ul class="skills" data-list>
+              <li class="skill" data-level="90">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Framework 1</span><span class="skill__pct">90%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="84">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Framework 2</span><span class="skill__pct">84%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="78">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Framework 3</span><span class="skill__pct">78%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="72">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Framework 4</span><span class="skill__pct">72%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="skill-card" data-reveal="fade-up" data-delay="3">
+            <h3 class="skill-card__title" data-field="group">Tools</h3>
+            <ul class="skills" data-list>
+              <li class="skill" data-level="88">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Tool 1</span><span class="skill__pct">88%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="82">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Tool 2</span><span class="skill__pct">82%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="76">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Tool 3</span><span class="skill__pct">76%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+              <li class="skill" data-level="70">
+                <div class="skill__top"><span class="skill__name" data-field="skill">Demo Tool 4</span><span class="skill__pct">70%</span></div>
+                <div class="skill__track" aria-hidden="true"><span class="skill__fill"></span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true" data-reveal="fade">
+      <svg class="divider__svg" viewBox="0 0 2880 140" preserveAspectRatio="none" focusable="false">
+        <path class="divider__fill" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80 L2880 140 L0 140 Z"/>
+        <path class="divider__line" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80"/>
+      </svg>
+    </div>
+
+    <!-- ================================================================
+         [05] PROJECTS - "My Projects" and "Team Projects" tabs.
+         Cards live inside the two panels below. Copy / delete whole
+         <article class="p-card"> blocks to add or remove projects.
+         ================================================================ -->
+    <section class="section" id="projects" aria-labelledby="projectsTitle">
+      <div class="container">
+        <header class="section__head" data-reveal="fade-up">
+          <p class="section__kicker" data-field="kicker"><span class="section__num">03</span> Projects</p>
+          <h2 class="section__title" id="projectsTitle" data-field="title">Selected work</h2>
+          <p class="section__sub" data-field="sub">Demo Subtitle: open a card to read the demo description and links.</p>
+        </header>
+
+        <div class="tabs" data-reveal="fade-up">
+          <div class="tabs__list" role="tablist" aria-label="Project categories">
+            <span class="tabs__ink" aria-hidden="true"></span>
+            <button class="tabs__tab is-active" type="button" role="tab" id="tab-mine" aria-controls="panel-mine" aria-selected="true" tabindex="0">My Projects</button>
+            <button class="tabs__tab" type="button" role="tab" id="tab-team" aria-controls="panel-team" aria-selected="false" tabindex="-1">Team Projects</button>
+          </div>
+
+          <!-- ~~~~~~~~~~ My Projects ~~~~~~~~~~ -->
+          <div class="tabs__panel" role="tabpanel" id="panel-mine" aria-labelledby="tab-mine" tabindex="0">
+            <div class="cards">
+
+              <article class="p-card" data-reveal="zoom-in" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/aircontrol.svg" alt="Demo Project Name preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Project Name</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description: a short demo paragraph describing what this project does, who it is for, and why it matters. Replace it with two or three real sentences.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 1</li><li>Demo Tech 2</li><li>Demo Tech 3</li>
+                      </ul>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" data-reveal="zoom-in" data-delay="1" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/onion-grade.svg" alt="Demo Project Name 2 preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Project Name 2</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description 2: another demo paragraph. Describe the problem you solved and the result you achieved with this build.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 1</li><li>Demo Tech 4</li><li>Demo Tech 5</li>
+                      </ul>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" data-reveal="zoom-in" data-delay="2" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/herway.svg" alt="Demo Project Name 3 preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Project Name 3</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description 3: a final demo paragraph for your third my-project card. Keep it short and specific.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 2</li><li>Demo Tech 3</li><li>Demo Tech 6</li>
+                      </ul>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- ~~~~~~~~~~ Team Projects ~~~~~~~~~~ -->
+          <div class="tabs__panel" role="tabpanel" id="panel-team" aria-labelledby="tab-team" tabindex="0" hidden>
+            <div class="cards">
+
+              <article class="p-card p-card--team" data-reveal="zoom-in" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/equipshare.svg" alt="Demo Team Project Name preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Team Project Name</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description: a short demo paragraph for a project you built with your team. Say what the team shipped and the outcome.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 1</li><li>Demo Tech 2</li><li>Demo Tech 4</li>
+                      </ul>
+                      <dl class="p-card__meta">
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-users"></use></svg> Team</dt>
+                          <dd data-field="team">Demo Team Members: Demo Name 1, Demo Name 2</dd>
+                        </div>
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-briefcase"></use></svg> My Role</dt>
+                          <dd data-field="role">Demo My Role</dd>
+                        </div>
+                      </dl>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card p-card--team" data-reveal="zoom-in" data-delay="1" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/gallery-architecture.svg" alt="Demo Team Project Name 2 preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Team Project Name 2</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description 2: a second demo paragraph for a team project. Mention your contribution and the result.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 3</li><li>Demo Tech 5</li><li>Demo Tech 6</li>
+                      </ul>
+                      <dl class="p-card__meta">
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-users"></use></svg> Team</dt>
+                          <dd data-field="team">Demo Team Members: Demo Name 3, Demo Name 4</dd>
+                        </div>
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-briefcase"></use></svg> My Role</dt>
+                          <dd data-field="role">Demo My Role 2</dd>
+                        </div>
+                      </dl>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card p-card--team" data-reveal="zoom-in" data-delay="2" data-tilt>
+                <div class="p-card__tilt">
+                  <div class="p-card__flip">
+                    <div class="p-card__face p-card__front">
+                      <div class="p-card__media">
+                        <img src="assets/projects/gallery-interface.svg" alt="Demo Team Project Name 3 preview" data-field="pic" loading="lazy">
+                        <span class="ph" data-ph>Demo Pic</span>
+                      </div>
+                      <div class="p-card__body">
+                        <h3 class="p-card__title" data-field="name">Demo Team Project Name 3</h3>
+                        <p class="p-card__hint">View details</p>
+                      </div>
+                      <button class="p-card__btn" type="button" data-flip aria-expanded="false">
+                        Details <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                      </button>
+                    </div>
+                    <div class="p-card__face p-card__back">
+                      <p class="p-card__desc" data-field="desc">Demo Description 3: a third demo paragraph for a team project card. Keep the same rhythm as the others.</p>
+                      <ul class="tags" data-list>
+                        <li>Demo Tech 1</li><li>Demo Tech 3</li><li>Demo Tech 5</li>
+                      </ul>
+                      <dl class="p-card__meta">
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-users"></use></svg> Team</dt>
+                          <dd data-field="team">Demo Team Members: Demo Name 5, Demo Name 6</dd>
+                        </div>
+                        <div data-field-wrap>
+                          <dt><svg class="ic" aria-hidden="true"><use href="#i-briefcase"></use></svg> My Role</dt>
+                          <dd data-field="role">Demo My Role 3</dd>
+                        </div>
+                      </dl>
+                      <div class="p-card__links">
+                        <a class="chip-link" href="#demo-docs" data-field="docs"><svg class="ic" aria-hidden="true"><use href="#i-doc"></use></svg> Demo Documentation</a>
+                        <a class="chip-link" href="#demo-github" data-field="github"><svg class="ic" aria-hidden="true"><use href="#i-github"></use></svg> Demo GitHub Link</a>
+                        <a class="chip-link" href="#demo-live" data-field="live"><svg class="ic" aria-hidden="true"><use href="#i-external"></use></svg> Demo Live Link</a>
+                      </div>
+                      <button class="p-card__btn p-card__btn-back" type="button" data-flip>
+                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider divider--flip" aria-hidden="true" data-reveal="fade">
+      <svg class="divider__svg" viewBox="0 0 2880 140" preserveAspectRatio="none" focusable="false">
+        <path class="divider__fill" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80 L2880 140 L0 140 Z"/>
+        <path class="divider__line" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80"/>
+      </svg>
+    </div>
+
+    <!-- ================================================================
+         [06] JOURNEY - education and achievements timeline
+         ================================================================ -->
+    <section class="section section--tint" id="journey" aria-labelledby="journeyTitle">
+      <div class="container">
+        <header class="section__head" data-reveal="fade-up">
+          <p class="section__kicker" data-field="kicker"><span class="section__num">04</span> Journey</p>
+          <h2 class="section__title" id="journeyTitle" data-field="title">Education &amp; Achievements</h2>
+          <p class="section__sub" data-field="sub">Demo Subtitle: the line below draws itself while you scroll.</p>
+        </header>
+
+        <div class="timeline" data-timeline>
+          <span class="timeline__track" aria-hidden="true"></span>
+          <span class="timeline__draw" aria-hidden="true"></span>
+
+          <div class="tl-group" data-reveal="fade-up"><span>Education</span></div>
+
+          <article class="tl-item" data-reveal="slide-left">
+            <span class="tl-item__dot" aria-hidden="true"></span>
+            <div class="tl-item__card">
+              <span class="tl-item__icon" aria-hidden="true"><svg class="ic"><use href="#i-cap"></use></svg></span>
+              <h3 class="tl-item__title" data-field="title">Demo College Name</h3>
+              <p class="tl-item__meta">
+                <span data-field="course">Demo Course</span>
+                <span class="sep" data-sep aria-hidden="true">•</span>
+                <span data-field="year">Demo Year</span>
+              </p>
+              <p class="tl-item__desc" data-field="desc">Demo description of your studies: your demo branch, demo highlights, and what you focused on.</p>
+            </div>
+          </article>
+
+          <div class="tl-group" data-reveal="fade-up"><span>Achievements / Certifications</span></div>
+
+          <article class="tl-item tl-item--alt" data-reveal="slide-right">
+            <span class="tl-item__dot" aria-hidden="true"></span>
+            <div class="tl-item__card">
+              <span class="tl-item__icon" aria-hidden="true"><svg class="ic"><use href="#i-award"></use></svg></span>
+              <h3 class="tl-item__title" data-field="title">Demo Achievement 1</h3>
+              <p class="tl-item__meta">
+                <span data-field="issuer">Demo Issuer</span>
+                <span class="sep" data-sep aria-hidden="true">•</span>
+                <span data-field="year">Demo Year</span>
+              </p>
+              <p class="tl-item__desc" data-field="desc">Demo description of this achievement or certification and why it matters.</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal="slide-left">
+            <span class="tl-item__dot" aria-hidden="true"></span>
+            <div class="tl-item__card">
+              <span class="tl-item__icon" aria-hidden="true"><svg class="ic"><use href="#i-award"></use></svg></span>
+              <h3 class="tl-item__title" data-field="title">Demo Achievement 2</h3>
+              <p class="tl-item__meta">
+                <span data-field="issuer">Demo Issuer</span>
+                <span class="sep" data-sep aria-hidden="true">•</span>
+                <span data-field="year">Demo Year</span>
+              </p>
+              <p class="tl-item__desc" data-field="desc">Demo description of your second demo achievement.</p>
+            </div>
+          </article>
+
+          <article class="tl-item tl-item--alt" data-reveal="slide-right">
+            <span class="tl-item__dot" aria-hidden="true"></span>
+            <div class="tl-item__card">
+              <span class="tl-item__icon" aria-hidden="true"><svg class="ic"><use href="#i-award"></use></svg></span>
+              <h3 class="tl-item__title" data-field="title">Demo Achievement 3</h3>
+              <p class="tl-item__meta">
+                <span data-field="issuer">Demo Issuer</span>
+                <span class="sep" data-sep aria-hidden="true">•</span>
+                <span data-field="year">Demo Year</span>
+              </p>
+              <p class="tl-item__desc" data-field="desc">Demo description of your third demo achievement or certification.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true" data-reveal="fade">
+      <svg class="divider__svg" viewBox="0 0 2880 140" preserveAspectRatio="none" focusable="false">
+        <path class="divider__fill" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80 L2880 140 L0 140 Z"/>
+        <path class="divider__line" d="M0 80 C240 20 480 120 720 80 C960 20 1200 120 1440 80 C1680 20 1920 120 2160 80 C2400 20 2640 120 2880 80"/>
+      </svg>
+    </div>
+
+    <!-- ================================================================
+         [07] CONTACT - email, phone, location + demo contact form
+         ================================================================ -->
+    <section class="section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <header class="section__head" data-reveal="fade-up">
+          <p class="section__kicker" data-field="kicker"><span class="section__num">05</span> Contact</p>
+          <h2 class="section__title" id="contactTitle" data-field="title">Let's build something</h2>
+          <p class="section__sub" data-field="sub">Demo Subtitle: replace the demo details below with your own.</p>
+        </header>
+
+        <div class="contact__grid">
+          <div class="contact__info" data-reveal="slide-left">
+            <p class="contact__blurb" data-field="blurb">Demo blurb: have a demo idea, a project, or just want to say hello? Use the form or reach me directly.</p>
+
+            <div class="info-card" data-field-wrap>
+              <span class="info-card__icon" aria-hidden="true"><svg class="ic"><use href="#i-mail"></use></svg></span>
+              <div class="info-card__text">
+                <span class="info-card__label" data-field="label">Demo Email</span>
+                <a class="info-card__value" href="mailto:demo@example.com" data-field="value">demo@example.com</a>
+              </div>
+            </div>
+
+            <div class="info-card" data-field-wrap>
+              <span class="info-card__icon" aria-hidden="true"><svg class="ic"><use href="#i-phone"></use></svg></span>
+              <div class="info-card__text">
+                <span class="info-card__label" data-field="label">Demo Phone</span>
+                <span class="info-card__value" data-field="value">+00 00000 00000</span>
+              </div>
+            </div>
+
+            <div class="info-card" data-field-wrap>
+              <span class="info-card__icon" aria-hidden="true"><svg class="ic"><use href="#i-pin"></use></svg></span>
+              <div class="info-card__text">
+                <span class="info-card__label" data-field="label">Demo Location</span>
+                <span class="info-card__value" data-field="value">Demo City, Demo Country</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="form" id="contactForm" novalidate data-reveal="slide-right" data-delay="1">
+            <div class="field">
+              <label class="field__label" for="f-name" data-field="flabel">Demo Name</label>
+              <input class="field__input" id="f-name" name="name" type="text" autocomplete="name" placeholder="Demo Your Name"
+                     required data-msg-required="Please enter your demo name.">
+              <p class="field__error" id="e-name" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-email" data-field="flabel">Demo Email</label>
+              <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" placeholder="demo@example.com"
+                     required data-msg-required="Please enter your demo email." data-msg-email="That demo email does not look valid.">
+              <p class="field__error" id="e-email" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-subject" data-field="flabel">Demo Subject</label>
+              <input class="field__input" id="f-subject" name="subject" type="text" placeholder="Demo Subject">
+              <p class="field__error" id="e-subject" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-message" data-field="flabel">Demo Message</label>
+              <textarea class="field__input" id="f-message" name="message" rows="5" placeholder="Demo Message: write your demo message here."
+                        required data-msg-required="Please write your demo message."></textarea>
+              <p class="field__error" id="e-message" hidden></p>
+            </div>
+            <div class="form__foot">
+              <button class="btn btn--primary" type="submit" data-magnetic>
+                Send Demo Message <svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg>
+              </button>
+              <p class="form__success" id="formSuccess" hidden>Demo success: your demo message was sent! Replace this text too.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================================
+       [08] FOOTER - your name and the year
+       ================================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand"><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg> <span data-field="footer-name">Demo Your Name</span></p>
+      <p class="footer__note" data-field="footer-note">Demo footer note: built with plain HTML, CSS and JavaScript.</p>
+      <p class="footer__copy" data-field="footer-year">© Demo Year</p>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       [09] EXTRAS - messages shown by the script. Edit the texts.
+       ================================================================ -->
+  <p id="msgLink" hidden>Demo link: replace the href in index.html with your real URL to make it work.</p>
+  <p id="msgEgg" hidden>Demo easter egg unlocked! You found the secret vibe coding mode. 🎉</p>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg class="ic" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toastText"></span></div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Demo picture preview">
+    <button class="lightbox__close" id="lbClose" type="button" aria-label="Close preview">
+      <svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" id="lbImg" alt="">
+      <span class="ph ph--lg" id="lbPh" hidden>Demo Pic</span>
+      <figcaption class="lightbox__cap" id="lbCap"></figcaption>
+    </figure>
+  </dialog>
+
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

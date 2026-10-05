@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Demo Pic placeholder portrait">
+  <defs>
+    <linearGradient id="avBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1" />
+      <stop offset="0.55" stop-color="#4f46e5" />
+      <stop offset="1" stop-color="#22d3ee" />
+    </linearGradient>
+    <linearGradient id="avShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0f1e" stop-opacity="0" />
+      <stop offset="1" stop-color="#0a0f1e" stop-opacity="0.55" />
+    </linearGradient>
+    <radialGradient id="avGlow" cx="0.78" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#avBg)" />
+  <rect width="600" height="600" fill="url(#avGlow)" />
+  <g stroke="rgba(255,255,255,0.14)" stroke-width="1.5" fill="none">
+    <circle cx="300" cy="235" r="118" />
+    <circle cx="300" cy="235" r="160" stroke-dasharray="10 14" />
+  </g>
+  <g fill="#f3f5ff">
+    <circle cx="300" cy="222" r="84" />
+    <path d="M140 600c14-118 74-176 160-176s146 58 160 176z" />
+  </g>
+  <rect width="600" height="600" fill="url(#avShade)" />
+  <g font-family="'Space Grotesk', Inter, Arial, sans-serif" text-anchor="middle">
+    <text x="300" y="512" font-size="34" font-weight="700" fill="#eef1ff">Demo Pic</text>
+    <text x="300" y="548" font-size="19" fill="rgba(238,241,255,0.75)">Replace assets/demo-avatar.svg</text>
+  </g>
+</svg>
